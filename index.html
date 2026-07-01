@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tags Demo</title>
+</head>
+<body>
+
+    <header>
+        <h1>HTML Tags Demo</h1>
+        <p>A beginner-friendly demonstration of commonly used HTML elements.</p>
+        <nav>
+            <ul>
+                <li><a href="#text">Text Elements</a></li>
+                <li><a href="#lists">Lists</a></li>
+                <li><a href="#media-section">Links &amp; Media</a></li>
+                <li><a href="#table">Table</a></li>
+                <li><a href="#form">Form</a></li>
+                <li><a href="#aside">Aside</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <!-- 1. Text Elements -->
+        <article id="text">
+            <section>
+            <h2>Text Elements</h2>
+
+            <h3>Headings</h3>
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+
+            <h3>Paragraphs &amp; Inline Tags</h3>
+            <p>This is a standard paragraph. <strong>This text is strongly emphasized.</strong> <em>This text is emphasized.</em> <small>This is small text.</small> Inline code looks like this: <code>&lt;code&gt;</code>.</p>
+
+            <pre>Preformatted text preserves whitespace and line breaks.
+It is often used for code blocks.</pre>
+
+            <blockquote>
+                This is a blockquote. It represents a section quoted from another source.
+                <br>
+                <small>&mdash; Someone Notable</small>
+            </blockquote>
+
+            <p>Line break example:<br>This text is on a new line.</p>
+                </section>
+        </article>
+
+        <hr>
+
+        <!-- 2. Lists -->
+        <section id="lists">
+            <h2>Lists</h2>
+
+            <h3>Ordered List</h3>
+            <ol>
+                <li>First item</li>
+                <li>Second item</li>
+                <li>Third item</li>
+            </ol>
+
+            <h3>Unordered List</h3>
+            <ul>
+                <li>Item A</li>
+                <li>Item B</li>
+                <li>Item C</li>
+            </ul>
+
+            <h3>Description List</h3>
+            <dl>
+                <dt>HTML</dt>
+                <dd>HyperText Markup Language &mdash; the standard language for web pages.</dd>
+                <dt>CSS</dt>
+                <dd>Cascading Style Sheets &mdash; used to style HTML content.</dd>
+            </dl>
+        </section>
+
+        <hr>
+
+        <!-- 3. Links, Images, and Media -->
+        <section id="media-section">
+            <h2>Links, Images &amp; Media</h2>
+
+            <h3>Links</h3>
+            <p>Visit <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">MDN HTML documentation</a> to learn more.</p>
+
+            <h3>Image with Figure</h3>
+            <figure>
+                <img src="https://via.placeholder.com/400x200" alt="Placeholder image showing a 400 by 200 rectangle">
+                <figcaption>This is a figure caption describing the image above.</figcaption>
+            </figure>
+
+            <h3>Audio</h3>
+            <audio controls>
+                <source src="placeholder-audio.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+            <h3>Video</h3>
+            <video controls width="400">
+                <source src="placeholder-video.mp4" type="video/mp4">
+                Your browser does not support the video element.
+            </video>
+        </section>
+
+        <hr>
+
+        <!-- 4. Table -->
+        <section id="table">
+            <h2>Table</h2>
+
+            <table>
+                <caption>Sample Student Grades</caption>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Alice</td>
+                        <td>Math</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>Bob</td>
+                        <td>Science</td>
+                        <td>B+</td>
+                    </tr>
+                    <tr>
+                        <td>Carol</td>
+                        <td>History</td>
+                        <td>A-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- 5. Form -->
+        <section id="form">
+            <h2>Sample Form</h2>
+
+            <form>
+                <fieldset>
+                    <legend>Personal Information</legend>
+
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name">
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email">
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Write your message here"></textarea>
+
+                    <label for="country">Country:</label>
+                    <select id="country" name="country">
+                        <option value="">-- Select --</option>
+                        <option value="th">Thailand</option>
+                        <option value="us">United States</option>
+                        <option value="jp">Japan</option>
+                    </select>
+                </fieldset>
+
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- 6. Aside -->
+        <aside id="aside">
+            <h2>Did You Know?</h2>
+            <p>The <code>&lt;aside&gt;</code> element represents content indirectly related to the main content, such as sidebars or notes.</p>
+        </aside>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p><small>&copy; 2026 HTML Tags Demo. Built with semantic HTML only &mdash; no CSS or JavaScript.</small></p>
+    </footer>
+
+</body>
+</html>
