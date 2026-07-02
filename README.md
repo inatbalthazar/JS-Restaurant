@@ -17,6 +17,7 @@ Deploy โดย Vercel https://1st-meet-git.vercel.app/
 | **Pre-Order** | เลือกจำนวนอาหารล่วงหน้า พร้อมคำนวณยอดรวมอัตโนมัติ |
 | **Confirmation Modal** | แสดง ref ID หลังจากจองสำเร็จ |
 | **Persistent Storage** | ข้อมูลการจองถูกบันทึกใน `localStorage` |
+| **Dark Mode** | สลับธีมกลางวัน/กลางคืนด้วยปุ่ม toggle (🌙/☀️) ขวาบน จำค่าผ่าน localStorage |
 | **Scroll Animation** | การ์ดเมนูค่อยๆ ปรากฏเมื่อเลื่อนลงมา (IntersectionObserver) |
 | **Responsive Design** | รองรับทุกขนาดหน้าจอ (Desktop, Tablet, Mobile) |
 

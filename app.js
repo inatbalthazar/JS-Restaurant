@@ -92,6 +92,33 @@ footer{background:#1e1b1a;color:rgba(255,255,255,0.6);padding:48px 24px}
 .confirmation-modal .reservation-id{font-size:.85rem;color:#b8944a;font-weight:600;margin-top:12px;margin-bottom:20px}
 .confirmation-modal .btn-close{padding:12px 32px;background:#1e1b1a;color:#fff;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;border:none;border-radius:50px;cursor:pointer;transition:all .3s}
 .confirmation-modal .btn-close:hover{background:#b8944a}
+:root{--bg:#f6f4f0;--text:#1e1b1a;--card-bg:#fff;--card-shadow:0 4px 24px rgba(0,0,0,0.05);--input-bg:#faf9f7;--border:#d9d0c6;--muted:#5a4e46;--desc:#6b5f56;--footer-bg:#1e1b1a;--footer-text:rgba(255,255,255,0.6);--filter-text:#5a4e46;--filter-border:#d9d0c6;--pre-order-bg:#faf9f7;--divider:#e8e3dd;--info-divider:#f0ece7}
+[data-theme="dark"]{--bg:#121212;--text:#e8e0d8;--card-bg:#1e1e1e;--card-shadow:0 4px 24px rgba(0,0,0,0.3);--input-bg:#2a2a2a;--border:#3a3a3a;--muted:#a09888;--desc:#b0a898;--footer-bg:#0a0a0a;--footer-text:rgba(255,255,255,0.5);--filter-text:#c0b8a8;--filter-border:#3a3a3a;--pre-order-bg:#2a2a2a;--divider:#333;--info-divider:#2a2a2a}
+body{background:var(--bg);color:var(--text);transition:background .3s,color .3s}
+.section-heading h2,.reservation-section h2,.reservation-info h3,.confirmation-modal h3,.pre-order-section h4,.menu-card h3{color:var(--text)}
+.menu-card{background:var(--card-bg);box-shadow:var(--card-shadow)}
+.menu-card:hover{box-shadow:0 20px 60px rgba(0,0,0,0.15)}
+.filter-btn{color:var(--filter-text);border-color:var(--filter-border)}
+.filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.desc,.reservation-info p,.confirmation-modal p{color:var(--desc)}
+.origin{color:var(--muted)}
+.card-body,.card-header h3,.reservation-form h4{color:var(--text)}
+.reservation-form{background:var(--card-bg);box-shadow:var(--card-shadow)}
+.reservation-info{background:var(--card-bg);box-shadow:var(--card-shadow)}
+.confirmation-modal{background:var(--card-bg);box-shadow:0 40px 80px rgba(0,0,0,0.3)}
+.form-group input,.form-group select{background:var(--input-bg);border-color:var(--border);color:var(--text)}
+.form-group label{color:var(--muted)}
+.pre-order-item{background:var(--pre-order-bg)}
+.pre-order-item .item-name{color:var(--text)}
+.pre-order-total{color:var(--text);border-top-color:var(--divider)}
+.reservation-info .info-detail{border-bottom-color:var(--info-divider)}
+.reservation-info .info-text{color:var(--muted)}
+.btn-primary{background:var(--text);color:var(--bg)}
+.btn-primary:hover{background:#b8944a;color:#fff}
+footer{background:var(--footer-bg);color:var(--footer-text)}
+.dark-toggle{position:fixed;top:80px;right:24px;z-index:200;width:48px;height:48px;border-radius:50%;border:1px solid var(--border);background:var(--card-bg);color:var(--text);cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.1);transition:all .3s}
+.dark-toggle:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(0,0,0,0.15)}
+@media(max-width:480px){.dark-toggle{top:72px;right:16px;width:42px;height:42px;font-size:1.1rem}}
 `;
 document.head.appendChild(style);
 
@@ -100,6 +127,31 @@ heroBg.style.backgroundImage = `linear-gradient(135deg, rgba(30,27,26,0.88), rgb
 heroBg.style.backgroundSize = 'cover';
 heroBg.style.backgroundPosition = 'center';
 heroBg.style.backgroundRepeat = 'no-repeat';
+
+const toggle = document.createElement('button');
+toggle.className = 'dark-toggle';
+toggle.setAttribute('aria-label', 'Toggle dark mode');
+document.body.appendChild(toggle);
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('genDTheme', theme);
+}
+
+const saved = localStorage.getItem('genDTheme');
+if (saved) {
+    applyTheme(saved);
+} else if (window.matchMedia('(prefers-color-scheme:dark)').matches) {
+    applyTheme('dark');
+} else {
+    applyTheme('light');
+}
+
+toggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+});
 
 function title(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
