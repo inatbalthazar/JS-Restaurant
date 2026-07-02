@@ -51,8 +51,7 @@ footer{background:#1e1b1a;color:rgba(255,255,255,0.6);padding:48px 24px}
 .footer-copy{font-size:.8rem}
 @media(max-width:768px){.hero h1{font-size:3.2rem}.hero{min-height:70vh;padding:100px 20px 60px}.section-heading h2{font-size:2rem}.menu-grid{grid-template-columns:1fr;gap:28px}.nav-links{gap:16px}.nav-links a{font-size:.75rem}.filter-bar{gap:8px}.filter-btn{padding:8px 16px;font-size:.75rem}}
 @media(max-width:480px){.hero h1{font-size:2.4rem}.nav-links li:nth-child(3),.nav-links li:nth-child(4){display:none}.card-body{padding:18px 18px 22px}}
-.reservation-section{max-width:1200px;margin:0 auto;padding:80px 24px 100px;display:none}
-.reservation-section.active{display:block}
+.reservation-section{max-width:1200px;margin:0 auto;padding:80px 24px 100px}
 .reservation-section h2{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:600;color:#1e1b1a;text-align:center;margin-bottom:8px}
 .reservation-section .section-sub{display:block;text-align:center;margin-bottom:48px}
 .reservation-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
@@ -345,14 +344,4 @@ function submitReservation() {
     document.getElementById('resPhone').value = '';
 }
 
-document.querySelector('a[href="#reservation"]').addEventListener('click', function (e) {
-    e.preventDefault();
-    const section = document.getElementById('reservation');
-    if (section.classList.contains('active')) {
-        section.classList.remove('active');
-        return;
-    }
-    if (!section.hasChildNodes()) renderReservation();
-    section.classList.add('active');
-    section.scrollIntoView({ behavior: 'smooth' });
-});
+renderReservation();
