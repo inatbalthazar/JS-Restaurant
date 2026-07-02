@@ -3,198 +3,588 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Tags Demo</title>
+    <title>Gen D &mdash; Premium Dining</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>HTML Tags Demo</h1>
-        <p>A beginner-friendly demonstration of commonly used HTML elements.</p>
-        <nav>
-            <ul>
-                <li><a href="#text">Text Elements</a></li>
-                <li><a href="#lists">Lists</a></li>
-                <li><a href="#media-section">Links &amp; Media</a></li>
-                <li><a href="#table">Table</a></li>
-                <li><a href="#form">Form</a></li>
-                <li><a href="#aside">Aside</a></li>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo">Gen D</a>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Menu</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Reservations</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <hr>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-since">Est. 2026</span>
+            <h1>Our <em>Menu</em></h1>
+            <p>Curated flavors from the <span style="color: yellow;"><em>JSD13 Gen D</em></span></p>
+            <a href="#menu" class="btn-hero">Explore Dishes</a>
+        </div>
+    </section>
 
-    <main>
+    <section class="menu-section" id="menu">
+        <div class="section-heading">
+            <span class="section-sub">Handpicked Selection</span>
+            <h2>Today's Offerings</h2>
+        </div>
 
-        <!-- 1. Text Elements -->
-        <article id="text">
-            <section>
-            <h2>Text Elements</h2>
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Italian">Italian</button>
+            <button class="filter-btn" data-filter="American">American</button>
+            <button class="filter-btn" data-filter="Japanese">Japanese</button>
+            <button class="filter-btn" data-filter="Mexican">Mexican</button>
+            <button class="filter-btn" data-filter="Thai">Thai</button>
+        </div>
 
-            <h3>Headings</h3>
-            <h1>Heading 1</h1>
-            <h2>Heading 2</h2>
-            <h3>Heading 3</h3>
-            <h4>Heading 4</h4>
-            <h5>Heading 5</h5>
-            <h6>Heading 6</h6>
-
-            <h3>Paragraphs &amp; Inline Tags</h3>
-            <p>This is a standard paragraph. <strong>This text is strongly emphasized.</strong> <em>This text is emphasized.</em> <small>This is small text.</small> Inline code looks like this: <code>&lt;code&gt;</code>.</p>
-
-            <pre>Preformatted text preserves whitespace and line breaks.
-It is often used for code blocks.</pre>
-
-            <blockquote>
-                This is a blockquote. It represents a section quoted from another source.
-                <br>
-                <small>&mdash; Someone Notable</small>
-            </blockquote>
-
-            <p>Line break example:<br>This text is on a new line.</p>
-                </section>
-        </article>
-
-        <hr>
-
-        <!-- 2. Lists -->
-        <section id="lists">
-            <h2>Lists</h2>
-
-            <h3>Ordered List</h3>
-            <ol>
-                <li>First item</li>
-                <li>Second item</li>
-                <li>Third item</li>
-            </ol>
-
-            <h3>Unordered List</h3>
-            <ul>
-                <li>Item A</li>
-                <li>Item B</li>
-                <li>Item C</li>
-            </ul>
-
-            <h3>Description List</h3>
-            <dl>
-                <dt>HTML</dt>
-                <dd>HyperText Markup Language &mdash; the standard language for web pages.</dd>
-                <dt>CSS</dt>
-                <dd>Cascading Style Sheets &mdash; used to style HTML content.</dd>
-            </dl>
-        </section>
-
-        <hr>
-
-        <!-- 3. Links, Images, and Media -->
-        <section id="media-section">
-            <h2>Links, Images &amp; Media</h2>
-
-            <h3>Links</h3>
-            <p>Visit <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">MDN HTML documentation</a> to learn more.</p>
-
-            <h3>Image with Figure</h3>
-            <figure>
-                <img src="https://via.placeholder.com/400x200" alt="Placeholder image showing a 400 by 200 rectangle">
-                <figcaption>This is a figure caption describing the image above.</figcaption>
-            </figure>
-
-            <h3>Audio</h3>
-            <audio controls>
-                <source src="placeholder-audio.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-
-            <h3>Video</h3>
-            <video controls width="400">
-                <source src="placeholder-video.mp4" type="video/mp4">
-                Your browser does not support the video element.
-            </video>
-        </section>
-
-        <hr>
-
-        <!-- 4. Table -->
-        <section id="table">
-            <h2>Table</h2>
-
-            <table>
-                <caption>Sample Student Grades</caption>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Subject</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Alice</td>
-                        <td>Math</td>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <td>Bob</td>
-                        <td>Science</td>
-                        <td>B+</td>
-                    </tr>
-                    <tr>
-                        <td>Carol</td>
-                        <td>History</td>
-                        <td>A-</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <hr>
-
-        <!-- 5. Form -->
-        <section id="form">
-            <h2>Sample Form</h2>
-
-            <form>
-                <fieldset>
-                    <legend>Personal Information</legend>
-
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Enter your name">
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email">
-
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Write your message here"></textarea>
-
-                    <label for="country">Country:</label>
-                    <select id="country" name="country">
-                        <option value="">-- Select --</option>
-                        <option value="th">Thailand</option>
-                        <option value="us">United States</option>
-                        <option value="jp">Japan</option>
-                    </select>
-                </fieldset>
-
-                <button type="submit">Submit</button>
-                <button type="reset">Reset</button>
-            </form>
-        </section>
-
-        <hr>
-
-        <!-- 6. Aside -->
-        <aside id="aside">
-            <h2>Did You Know?</h2>
-            <p>The <code>&lt;aside&gt;</code> element represents content indirectly related to the main content, such as sidebars or notes.</p>
-        </aside>
-
-    </main>
-
-    <hr>
+        <div class="menu-grid" id="menuGrid"></div>
+    </section>
 
     <footer>
-        <p><small>&copy; 2026 HTML Tags Demo. Built with semantic HTML only &mdash; no CSS or JavaScript.</small></p>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="footer-logo">Gen D</span>
+                <p>Fine dining crafted with passion.</p>
+            </div>
+            <p class="footer-copy">&copy; 2026 Gen D. All rights reserved.</p>
+        </div>
     </footer>
 
+    <script src="my-array.js"></script>
+    <script src="my-object.js"></script>
+    <script>
+        const foodImages = {
+            pizza:    'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=420&fit=crop',
+            burger:   'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=420&fit=crop',
+            pasta:    'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&h=420&fit=crop',
+            sushi:    'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=600&h=420&fit=crop',
+            tacos:    'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&h=420&fit=crop',
+            'pad thai':'https://images.unsplash.com/photo-1559314809-0d155014e29e?w=600&h=420&fit=crop',
+            ramen:    'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=420&fit=crop',
+            steak:    'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&h=420&fit=crop'
+        };
+
+        const fallbackGradients = {
+            Italian:  'linear-gradient(135deg, #f7971e, #ffd200)',
+            American: 'linear-gradient(135deg, #e43a15, #e65245)',
+            Japanese: 'linear-gradient(135deg, #1a1a2e, #c31432)',
+            Mexican:  'linear-gradient(135deg, #11998e, #38ef7d)',
+            Thai:     'linear-gradient(135deg, #f2709c, #ff9472)'
+        };
+
+        const descriptions = {
+            pizza:    'Wood-fired perfection with San Marzano tomatoes, fresh mozzarella, and fragrant basil.',
+            burger:   'Prime Angus beef with aged cheddar, caramelized onions, and our signature sauce.',
+            pasta:    'Al dente spaghetti tossed in a rich, slow-simmered pomodoro with garden herbs.',
+            sushi:    'Premium nori rolls with seasoned rice, fresh salmon, and creamy avocado.',
+            tacos:    'Soft corn tortillas with grilled carne asada, pico de gallo, and lime crema.',
+            'pad thai':'Stir-fried rice noodles with shrimp, bean sprouts, tamarind sauce, and crushed peanuts.',
+            ramen:    'Rich tonkotsu broth with chashu pork, soft egg, nori, and hand-pulled noodles.',
+            steak:    '30-day dry-aged prime ribeye, chargrilled to perfection with rosemary butter.'
+        };
+
+        const prices = [18.99, 15.99, 16.99, 22.99, 14.99, 17.99, 18.99, 38.99];
+
+        function title(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        function getFlag(country) {
+            return { Italy: '🇮🇹', USA: '🇺🇸', Japan: '🇯🇵', Mexico: '🇲🇽', Thailand: '🇹🇭' }[country] || '🌍';
+        }
+
+        const grid = document.getElementById('menuGrid');
+        const fragment = document.createDocumentFragment();
+
+        foodDatabase.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            card.dataset.cuisine = item.cuisine;
+
+            const imgUrl = foodImages[item.name];
+            const grad   = fallbackGradients[item.cuisine] || 'linear-gradient(135deg, #667eea, #764ba2)';
+            const desc   = descriptions[item.name] || `A delightful ${item.cuisine} dish from ${item.origin}.`;
+            const price  = '$' + (prices[item.id - 1] || '15.99').toFixed(2);
+
+            card.innerHTML = `
+                <div class="card-img-wrap" style="background:${grad}">
+                    <img src="${imgUrl}" alt="${item.name}" loading="lazy"
+                         onerror="this.parentElement.classList.add('img-failed');this.style.display='none'">
+                    <span class="cuisine-tag">${item.cuisine}</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3>${title(item.name)}</h3>
+                        <span class="price">${price}</span>
+                    </div>
+                    <p class="desc">${desc}</p>
+                    <div class="card-meta">
+                        <span class="origin">${getFlag(item.origin)} ${item.origin}</span>
+                        <span class="badge ${item.vegetarian ? 'veg' : 'non-veg'}">
+                            ${item.vegetarian ? 'Vegetarian' : 'Non-Veg'}
+                        </span>
+                    </div>
+                </div>
+            `;
+
+            fragment.appendChild(card);
+        });
+
+        grid.appendChild(fragment);
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                document.querySelectorAll('.menu-card').forEach(card => {
+                    card.style.display = (filter === 'all' || card.dataset.cuisine === filter) ? '' : 'none';
+                });
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.menu-card').forEach((card, i) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`;
+            observer.observe(card);
+        });
+    </script>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f6f4f0;
+            color: #1e1b1a;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(30, 27, 26, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #d4af37;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(30, 27, 26, 0.88), rgba(48, 38, 32, 0.92)),
+                url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80') center / cover no-repeat;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        .hero-since {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: #d4af37;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            padding: 14px 40px;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .btn-hero:hover {
+            background: #d4af37;
+            color: #1e1b1a;
+        }
+
+        .menu-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px 100px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-sub {
+            display: inline-block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #b8944a;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #1e1b1a;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 48px;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border: 1px solid #d9d0c6;
+            background: transparent;
+            color: #5a4e46;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .filter-btn:hover {
+            border-color: #b8944a;
+            color: #b8944a;
+        }
+
+        .filter-btn.active {
+            background: #1e1b1a;
+            border-color: #1e1b1a;
+            color: #fff;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 36px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
+        }
+
+        .card-img-wrap {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .menu-card:hover .card-img-wrap img {
+            transform: scale(1.10);
+        }
+
+        .card-img-wrap.img-failed {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cuisine-tag {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(30, 27, 26, 0.8);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-body {
+            padding: 22px 24px 26px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .card-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e1b1a;
+        }
+
+        .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #b8944a;
+        }
+
+        .desc {
+            font-size: 0.9rem;
+            color: #6b5f56;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .origin {
+            font-size: 0.88rem;
+            color: #5a4e46;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .badge.veg {
+            background: #e6f3e6;
+            color: #1f7a3a;
+        }
+
+        .badge.non-veg {
+            background: #fde8e8;
+            color: #b91c1c;
+        }
+
+        footer {
+            background: #1e1b1a;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 48px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .hero {
+                min-height: 70vh;
+                padding: 100px 20px 60px;
+            }
+
+            .section-heading h2 {
+                font-size: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            .filter-bar {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .nav-links li:nth-child(3),
+            .nav-links li:nth-child(4) {
+                display: none;
+            }
+
+            .card-body {
+                padding: 18px 18px 22px;
+            }
+        }
+    </style>
 </body>
 </html>
