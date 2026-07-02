@@ -1,6 +1,6 @@
 # Gen D — Premium Dining
 
-> โครงการนี้เป็นส่วนหนึ่งของการเรียนรู้ในหลักสูตร **Generation Thailand**
+> โครงการนี้เป็นส่วนหนึ่งของการเรียนรู้ในหลักสูตร **JSD Generation Thailand** ในหัวข้อเรียน JavaScript สอนโดย K.Neeti/K.Kan
 
 เว็บไซต์ร้านอาหารระดับพรีเมียมที่แสดงเมนูอาหาร พร้อมระบบจองโต๊ะและสั่งอาหารล่วงหน้า ข้อมูลทั้งหมดดึงจากไฟล์ JavaScript และแสดงผลผ่าน DOM
 
@@ -93,7 +93,7 @@ foodDatabase.forEach(item => {
 first-meet-git/
 ├── index.html        # โครงสร้าง HTML (71 บรรทัด)
 ├── my-array.js       # ข้อมูล food array
-├── my-object.js      # ข้อมูล structured (foodDatabase, gradients, hero)
+├── my-object.js      # ข้อมูล structured (foodDatabase, gradients)
 ├── app.js            # CSS inject + logic ทั้งหมด (render, filter, reservation, animation)
 ├── PRD.md            # Product Requirements Document
 └── README.md         # เอกสารนี้
