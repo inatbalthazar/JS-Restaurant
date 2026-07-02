@@ -1,4 +1,5 @@
 # Gen D — Premium Dining
+Deploy โดย Vercel https://1st-meet-git.vercel.app/
 
 > โครงการนี้เป็นส่วนหนึ่งของการเรียนรู้ในหลักสูตร **JSD Generation Thailand** ในหัวข้อเรียน JavaScript สอนโดย K.Neeti/K.Kan
 
