@@ -122,8 +122,10 @@ footer{background:var(--footer-bg);color:var(--footer-text)}
 .nav-actions .lang-btn{background:0;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:5px 12px;border-radius:6px;font-size:.75rem;font-weight:600;letter-spacing:.5px;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;line-height:1}
 .nav-actions .lang-btn:hover{background:rgba(255,255,255,.1);border-color:#d4af37;color:#d4af37}
 .lang-switcher{position:relative}
-.lang-menu{position:absolute;top:calc(100%+8px);right:0;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.15);padding:6px;min-width:120px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .25s ease;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.lang-menu{position:absolute;top:calc(100%+8px);right:0;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.15);padding:6px;min-width:120px;max-height:280px;overflow-y:auto;opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .25s ease;display:grid;grid-template-columns:1fr 1fr;gap:2px}
 .lang-menu.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.lang-menu::-webkit-scrollbar{width:4px}
+.lang-menu::-webkit-scrollbar-thumb{background:#d9d0c6;border-radius:4px}
 .lang-menu button{background:0;border:none;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:.78rem;color:#5a4e46;font-weight:500;transition:all .15s;font-family:'Inter',sans-serif;text-align:center}
 .lang-menu button:hover{background:#f0ece7;color:#1e1b1a}
 .lang-menu button.active{background:#1e1b1a;color:#fff}
@@ -209,6 +211,10 @@ langBtn.parentElement.appendChild(langMenu);
 langBtn.addEventListener('click', (e) => {
   e.stopPropagation();
   langMenu.classList.toggle('open');
+  if (langMenu.classList.contains('open')) {
+    const active = langMenu.querySelector('.active');
+    if (active) active.scrollIntoView({ block: 'center' });
+  }
 });
 document.addEventListener('click', () => langMenu.classList.remove('open'));
 
@@ -216,6 +222,9 @@ function setLanguage(code) {
   currentLang = code;
   langBtn.textContent = code.toUpperCase();
   langMenu.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.lang === code));
+  renderReservation();
+  renderAbout();
+  renderContact();
   applyTranslation(translations[code]);
 }
 
@@ -228,19 +237,15 @@ function applyTranslation(t) {
   document.querySelector('.hero h1').innerHTML = t.heroTitle.replace(/ (.+)$/, ' <em>$1</em>');
   document.querySelector('.hero p').innerHTML = t.heroDesc.replace('Gen D', '<span style="color:yellow"><em>Gen D </em></span>');
   document.querySelector('.btn-hero').textContent = t.heroBtn;
-  document.querySelector('.section-sub').textContent = t.sectionSub;
-  document.querySelector('.section-heading h2').textContent = t.sectionTitle;
+  document.querySelector('.menu-section .section-sub').textContent = t.sectionSub;
+  document.querySelector('.menu-section .section-heading h2').textContent = t.sectionTitle;
   document.querySelectorAll('.filter-btn')[0].textContent = t.filterAll;
   document.querySelectorAll('.filter-bar .filter-btn').forEach((btn, i) => {
     if (i > 0) {
-      const map = { 'en': ['Italian','American','Japanese','Mexican','Thai'] };
-      btn.textContent = t[map.en[i-1]] || map.en[i-1];
+      const cuisine = btn.dataset.filter;
+      btn.textContent = t[cuisine] || cuisine;
     }
   });
-  document.querySelector('#about .section-sub').textContent = t.aboutSub;
-  document.querySelector('#about h2').textContent = t.aboutTitle;
-  document.querySelector('#contact .section-sub').textContent = t.contactSub;
-  document.querySelector('#contact h2').textContent = t.contactTitle;
   document.querySelector('.footer-brand p').textContent = t.footerText;
 }
 
@@ -267,7 +272,7 @@ foodDatabase.forEach(item => {
         <div class="card-img-wrap" style="background:${grad}">
             <img src="${item.image}" alt="${item.name}" loading="lazy"
                  onerror="this.parentElement.classList.add('img-failed');this.style.display='none'">
-            <span class="cuisine-tag">${item.cuisine}</span>
+            <span class="cuisine-tag">${(translations[currentLang]||translations.en)[item.cuisine] || item.cuisine}</span>
         </div>
         <div class="card-body">
             <div class="card-header">
@@ -278,7 +283,7 @@ foodDatabase.forEach(item => {
             <div class="card-meta">
                 <span class="origin">${getFlag(item.origin)} ${item.origin}</span>
                 <span class="badge ${item.vegetarian ? 'veg' : 'non-veg'}">
-                    ${item.vegetarian ? 'Vegetarian' : 'Non-Veg'}
+                    ${item.vegetarian ? (translations[currentLang]||translations.en).veg : (translations[currentLang]||translations.en).nonVeg}
                 </span>
             </div>
         </div>
@@ -321,69 +326,70 @@ const preOrder = {};
 let preOrderTotal = 0;
 
 function renderReservation() {
+    const t = translations[currentLang] || translations.en;
     const section = document.getElementById('reservation');
     section.innerHTML = `
-        <span class="section-sub">Book Your Experience</span>
-        <h2>Reserve &amp; Pre-Order</h2>
+        <span class="section-sub">${t.resSub}</span>
+        <h2>${t.resTitle}</h2>
         <div class="reservation-grid">
             <div class="reservation-form">
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" id="resName" placeholder="Your name" required>
+                        <label>${t.formName}</label>
+                        <input type="text" id="resName" placeholder="${t.placeName}" required>
                     </div>
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="resEmail" placeholder="your@email.com" required>
+                        <label>${t.formEmail}</label>
+                        <input type="email" id="resEmail" placeholder="${t.placeEmail}" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" id="resPhone" placeholder="08X-XXX-XXXX" required>
+                        <label>${t.formPhone}</label>
+                        <input type="tel" id="resPhone" placeholder="${t.placePhone}" required>
                     </div>
                     <div class="form-group">
-                        <label>Guests</label>
+                        <label>${t.formGuests}</label>
                         <select id="resGuests">
-                            ${Array.from({length:8}, (_,i) => `<option value="${i+1}">${i+1} ${i===0?'Guest':'Guests'}</option>`).join('')}
+                            ${Array.from({length:8}, (_,i) => `<option value="${i+1}">${i+1} ${i===0?t.guest:t.guests}</option>`).join('')}
                         </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Date</label>
+                        <label>${t.formDate}</label>
                         <input type="date" id="resDate" required>
                     </div>
                     <div class="form-group">
-                        <label>Time</label>
+                        <label>${t.formTime}</label>
                         <select id="resTime">
-                            ${['11:00','11:30','12:00','12:30','13:00','13:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00'].map(t => `<option value="${t}">${t}</option>`).join('')}
+                            ${['11:00','11:30','12:00','12:30','13:00','13:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00'].map(tm => `<option value="${tm}">${tm}</option>`).join('')}
                         </select>
                     </div>
                 </div>
                 <div class="pre-order-section">
-                    <h4>Pre-Order Food</h4>
+                    <h4>${t.preOrderTitle}</h4>
                     <div class="pre-order-list" id="preOrderList"></div>
-                    <div class="pre-order-total">Total: <span id="preOrderTotal">$0.00</span></div>
+                    <div class="pre-order-total">${t.preOrderTotal} <span id="preOrderTotal">$0.00</span></div>
                 </div>
-                <button class="btn-primary" id="submitReservation">Confirm Reservation</button>
+                <button class="btn-primary" id="submitReservation">${t.submitBtn}</button>
             </div>
             <div class="reservation-info">
-                <h3>Why Reserve in Advance?</h3>
-                <p>Skip the wait and secure your table at Gen D. Pre-order your favorite dishes so they're ready the moment you arrive.</p>
-                <div class="info-detail"><span class="info-icon">🕐</span><span class="info-text">Priority seating upon arrival</span></div>
-                <div class="info-detail"><span class="info-icon">🍽️</span><span class="info-text">Your pre-orders prepared fresh on time</span></div>
-                <div class="info-detail"><span class="info-icon">🎉</span><span class="info-text">Special occasion? Let us know!</span></div>
+                <h3>${t.infoTitle}</h3>
+                <p>${t.infoDesc}</p>
+                <div class="info-detail"><span class="info-icon">🕐</span><span class="info-text">${t.infoSeating}</span></div>
+                <div class="info-detail"><span class="info-icon">🍽️</span><span class="info-text">${t.infoPreOrder}</span></div>
+                <div class="info-detail"><span class="info-icon">🎉</span><span class="info-text">${t.infoOccasion}</span></div>
             </div>
         </div>
         <div class="confirmation-overlay" id="confirmationOverlay">
             <div class="confirmation-modal">
                 <div class="checkmark">✅</div>
-                <h3>Reservation Confirmed!</h3>
-                <p>We've received your booking and pre-order.</p>
-                <p>A confirmation will be sent to your email.</p>
+                <h3>${t.confirmTitle}</h3>
+                <p>${t.confirmP1}</p>
+                <p>${t.confirmP2}</p>
                 <div class="reservation-id" id="reservationId"></div>
-                <button class="btn-close" id="closeConfirmation">Done</button>
+                <button class="btn-close" id="closeConfirmation">${t.confirmBtn}</button>
             </div>
         </div>
     `;
@@ -479,7 +485,8 @@ function submitReservation() {
     Object.keys(preOrder).forEach(k => delete preOrder[k]);
     updatePreOrderUI();
 
-    document.getElementById('reservationId').textContent = 'Ref: ' + reservation.id;
+    const tConfirm = translations[currentLang] || translations.en;
+    document.getElementById('reservationId').textContent = tConfirm.confirmRef + ' ' + reservation.id;
     document.getElementById('confirmationOverlay').classList.add('active');
 
     document.getElementById('resName').value = '';
@@ -492,18 +499,19 @@ renderAbout();
 renderContact();
 
 function renderAbout() {
+  const t = translations[currentLang] || translations.en;
   const section = document.getElementById('about');
   section.innerHTML = `
-    <span class="section-sub">${translations.en.aboutSub}</span>
-    <h2>${translations.en.aboutTitle}</h2>
+    <span class="section-sub">${t.aboutSub}</span>
+    <h2>${t.aboutTitle}</h2>
     <div class="about-grid">
       <div class="about-text">
-        <p>Welcome to Gen D — where the spirit of <strong>Maido</strong>, ranked among the world's finest restaurants, inspires every plate.</p>
-        <p>${maidoInfo.philosophy}</p>
-        <p>Our cuisine is <strong>Nikkei</strong> — a harmony of Japanese precision and Peruvian soul. Led by Chef <strong>${maidoInfo.chef}</strong>, we honor this tradition of intercultural exchange, blending the freshest local ingredients with techniques passed across oceans and generations.</p>
-        <p>Every dish at Gen D tells a story of movement — of flavors, people, and cultures colliding to create something entirely new.</p>
-        <div class="chef-name">${maidoInfo.chef}</div>
-        <div class="chef-title">Executive Chef &bull; Maido, Lima</div>
+        <p>${t.aboutP1}</p>
+        <p>${t.aboutP2}</p>
+        <p>${t.aboutP3}</p>
+        <p>${t.aboutP4}</p>
+        <div class="chef-name">${t.aboutChef}</div>
+        <div class="chef-title">${t.aboutChefTitle}</div>
       </div>
       <div class="about-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;min-height:420px;border-radius:20px">
         <span style="color:rgba(255,255,255,.3);font-size:3rem;font-family:'Playfair Display',serif">Maido</span>
@@ -512,29 +520,29 @@ function renderAbout() {
 }
 
 function renderContact() {
+  const t = translations[currentLang] || translations.en;
   const section = document.getElementById('contact');
-  const t = translations.en;
   section.innerHTML = `
     <span class="section-sub">${t.contactSub}</span>
     <h2>${t.contactTitle}</h2>
     <div class="contact-grid">
       <div class="contact-card">
-        <h3>Visit Us</h3>
+        <h3>${t.contactVisit}</h3>
         <div class="contact-item">
           <span class="ci-icon">📍</span>
-          <div><div class="ci-label">Address</div><div class="ci-value">${maidoInfo.address}</div></div>
+          <div><div class="ci-label">${t.contactAddrLabel}</div><div class="ci-value">${t.contactAddress}</div></div>
         </div>
         <div class="contact-item">
           <span class="ci-icon">📞</span>
-          <div><div class="ci-label">Phone</div><div class="ci-value">${maidoInfo.phone}</div></div>
+          <div><div class="ci-label">${t.contactPhoneLabel}</div><div class="ci-value">${t.contactPhone}</div></div>
         </div>
         <div class="contact-item">
           <span class="ci-icon">🕐</span>
-          <div><div class="ci-label">Hours</div><div class="ci-value">${maidoInfo.hours}</div></div>
+          <div><div class="ci-label">${t.contactHoursLabel}</div><div class="ci-value">${t.contactHours}</div></div>
         </div>
         <div class="contact-item">
           <span class="ci-icon">🚫</span>
-          <div><div class="ci-label">Sunday</div><div class="ci-value">${maidoInfo.sunday}</div></div>
+          <div><div class="ci-label">${t.contactSundayLabel}</div><div class="ci-value">${t.contactSunday}</div></div>
         </div>
       </div>
       <div class="contact-map">
