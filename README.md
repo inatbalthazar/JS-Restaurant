@@ -124,4 +124,4 @@ npx serve .
 
 - **HTML5** — โครงสร้างหน้าเว็บ
 - **CSS3** — ตกแต่งผ่าน JavaScript injection (Flexbox, Grid, Animations, Media Queries)
-- **JavaScript (Vanilla)** — ข้อมูล การจัดการ DOM, LocalStorage, IntersectionObserver
+- **JavaScript** — ข้อมูล การจัดการ DOM, LocalStorage, IntersectionObserver
