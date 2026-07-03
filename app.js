@@ -116,11 +116,12 @@ body{background:var(--bg);color:var(--text);transition:background .3s,color .3s}
 .btn-primary{background:var(--text);color:var(--bg)}
 .btn-primary:hover{background:#b8944a;color:#fff}
 footer{background:var(--footer-bg);color:var(--footer-text)}
-.dark-toggle{position:fixed;top:80px;right:24px;z-index:200;width:48px;height:48px;border-radius:50%;border:1px solid var(--border);background:var(--card-bg);color:var(--text);cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.1);transition:all .3s}
-.dark-toggle:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(0,0,0,0.15)}
-.lang-switcher{position:relative;z-index:200}
-.lang-btn{background:0;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:5px 12px;border-radius:6px;font-size:.75rem;font-weight:600;letter-spacing:.5px;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif}
-.lang-btn:hover{background:rgba(255,255,255,.1);border-color:#d4af37;color:#d4af37}
+.dark-toggle{background:0;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:5px 8px;border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;line-height:1}
+.dark-toggle:hover{background:rgba(255,255,255,.1);border-color:#d4af37;color:#d4af37}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.nav-actions .lang-btn{background:0;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:5px 12px;border-radius:6px;font-size:.75rem;font-weight:600;letter-spacing:.5px;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;line-height:1}
+.nav-actions .lang-btn:hover{background:rgba(255,255,255,.1);border-color:#d4af37;color:#d4af37}
+.lang-switcher{position:relative}
 .lang-menu{position:absolute;top:calc(100%+8px);right:0;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.15);padding:6px;min-width:120px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .25s ease;display:grid;grid-template-columns:1fr 1fr;gap:2px}
 .lang-menu.open{opacity:1;pointer-events:auto;transform:translateY(0)}
 .lang-menu button{background:0;border:none;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:.78rem;color:#5a4e46;font-weight:500;transition:all .15s;font-family:'Inter',sans-serif;text-align:center}
@@ -146,7 +147,7 @@ footer{background:var(--footer-bg);color:var(--footer-text)}
 .contact-map{background:var(--card-bg);border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.05);min-height:360px}
 .contact-map iframe{width:100%;height:360px;border:none;display:block}
 @media(max-width:768px){.about-grid,.contact-grid{grid-template-columns:1fr}.about-img img{height:260px}.lang-menu{grid-template-columns:1fr}}
-@media(max-width:480px){.dark-toggle{top:72px;right:16px;width:42px;height:42px;font-size:1.1rem}.lang-btn{padding:4px 10px;font-size:.7rem}}
+@media(max-width:480px){.lang-btn{padding:4px 10px;font-size:.7rem}}
 `;
 document.head.appendChild(style);
 
@@ -169,10 +170,7 @@ setInterval(() => {
   s[slideIdx].style.zIndex = '1';
 }, 5000);
 
-const toggle = document.createElement('button');
-toggle.className = 'dark-toggle';
-toggle.setAttribute('aria-label', 'Toggle dark mode');
-document.body.appendChild(toggle);
+const toggle = document.querySelector('.dark-toggle');
 
 function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -183,10 +181,8 @@ function applyTheme(theme) {
 const saved = localStorage.getItem('genDTheme');
 if (saved) {
     applyTheme(saved);
-} else if (window.matchMedia('(prefers-color-scheme:dark)').matches) {
-    applyTheme('dark');
 } else {
-    applyTheme('light');
+    applyTheme('dark');
 }
 
 toggle.addEventListener('click', () => {
@@ -195,7 +191,7 @@ toggle.addEventListener('click', () => {
 });
 
 let currentLang = 'en';
-const langBtn = document.querySelector('.lang-btn');
+const langBtn = document.querySelector('.lang-switcher');
 const langMenu = document.createElement('div');
 langMenu.className = 'lang-menu';
 langList.forEach(code => {
