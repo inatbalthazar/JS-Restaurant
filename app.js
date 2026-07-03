@@ -123,10 +123,23 @@ footer{background:var(--footer-bg);color:var(--footer-text)}
 document.head.appendChild(style);
 
 const heroBg = document.querySelector('.hero-bg');
-heroBg.style.backgroundImage = `linear-gradient(135deg, rgba(30,27,26,0.88), rgba(48,38,32,0.92)), url(${heroBackground})`;
-heroBg.style.backgroundSize = 'cover';
-heroBg.style.backgroundPosition = 'center';
-heroBg.style.backgroundRepeat = 'no-repeat';
+heroBg.style.background = 'none';
+heroBg.innerHTML = '';
+heroBackground.forEach((url, i) => {
+  const div = document.createElement('div');
+  div.className = 'hero-slide';
+  div.style.cssText = `position:absolute;inset:0;background:linear-gradient(135deg,rgba(30,27,26,0.88),rgba(48,38,32,0.92)),url(${url}) center/cover no-repeat;opacity:${i===0?1:0};transition:opacity 1.2s ease;z-index:${i===0?1:0}`;
+  heroBg.appendChild(div);
+});
+let slideIdx = 0;
+setInterval(() => {
+  const s = heroBg.children;
+  s[slideIdx].style.opacity = '0';
+  s[slideIdx].style.zIndex = '0';
+  slideIdx = (slideIdx + 1) % s.length;
+  s[slideIdx].style.opacity = '1';
+  s[slideIdx].style.zIndex = '1';
+}, 5000);
 
 const toggle = document.createElement('button');
 toggle.className = 'dark-toggle';

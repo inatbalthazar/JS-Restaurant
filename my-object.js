@@ -81,7 +81,13 @@ let foodDatabase = [
     }
 ]
 
-const heroBackground = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80';
+const heroBackground = [
+  'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80',
+  'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80',
+  'https://images.unsplash.com/photo-1550966871-3ed3cdb51f3a?w=1920&q=80',
+  'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=1920&q=80',
+  'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1920&q=80'
+];
 
 const fallbackGradients = {
     Italian:  'linear-gradient(135deg, #f7971e, #ffd200)',
