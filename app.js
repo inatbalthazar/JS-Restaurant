@@ -118,7 +118,35 @@ body{background:var(--bg);color:var(--text);transition:background .3s,color .3s}
 footer{background:var(--footer-bg);color:var(--footer-text)}
 .dark-toggle{position:fixed;top:80px;right:24px;z-index:200;width:48px;height:48px;border-radius:50%;border:1px solid var(--border);background:var(--card-bg);color:var(--text);cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.1);transition:all .3s}
 .dark-toggle:hover{transform:scale(1.1);box-shadow:0 6px 24px rgba(0,0,0,0.15)}
-@media(max-width:480px){.dark-toggle{top:72px;right:16px;width:42px;height:42px;font-size:1.1rem}}
+.lang-switcher{position:relative;z-index:200}
+.lang-btn{background:0;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:5px 12px;border-radius:6px;font-size:.75rem;font-weight:600;letter-spacing:.5px;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif}
+.lang-btn:hover{background:rgba(255,255,255,.1);border-color:#d4af37;color:#d4af37}
+.lang-menu{position:absolute;top:calc(100%+8px);right:0;background:#fff;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,.15);padding:6px;min-width:120px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .25s ease;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.lang-menu.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.lang-menu button{background:0;border:none;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:.78rem;color:#5a4e46;font-weight:500;transition:all .15s;font-family:'Inter',sans-serif;text-align:center}
+.lang-menu button:hover{background:#f0ece7;color:#1e1b1a}
+.lang-menu button.active{background:#1e1b1a;color:#fff}
+.about-section,.contact-section{max-width:1200px;margin:0 auto;padding:80px 24px 100px}
+.about-section h2,.contact-section h2{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:600;color:var(--text);text-align:center;margin-bottom:8px}
+.about-section .section-sub,.contact-section .section-sub{display:block;text-align:center;margin-bottom:48px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.about-text p{color:var(--desc);line-height:1.8;font-size:.95rem;margin-bottom:16px}
+.about-text .chef-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:#d4af37;font-weight:600;margin-top:8px}
+.about-text .chef-title{font-size:.82rem;color:var(--muted);margin-bottom:20px}
+.about-img{width:100%;border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+.about-img img{width:100%;height:420px;object-fit:cover;display:block}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.contact-card{background:var(--card-bg);border-radius:20px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,.05)}
+.contact-card h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--text);margin-bottom:20px}
+.contact-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--info-divider)}
+.contact-item:last-child{border-bottom:none}
+.contact-item .ci-icon{font-size:1.3rem;width:28px;text-align:center;flex-shrink:0;margin-top:2px}
+.contact-item .ci-label{font-size:.72rem;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
+.contact-item .ci-value{font-size:.9rem;color:var(--text);line-height:1.5}
+.contact-map{background:var(--card-bg);border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.05);min-height:300px}
+.contact-map iframe{width:100%;height:100%;border:none;display:block}
+@media(max-width:768px){.about-grid,.contact-grid{grid-template-columns:1fr}.about-img img{height:260px}.lang-menu{grid-template-columns:1fr}}
+@media(max-width:480px){.dark-toggle{top:72px;right:16px;width:42px;height:42px;font-size:1.1rem}.lang-btn{padding:4px 10px;font-size:.7rem}}
 `;
 document.head.appendChild(style);
 
@@ -165,6 +193,60 @@ toggle.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
     applyTheme(current === 'dark' ? 'light' : 'dark');
 });
+
+let currentLang = 'en';
+const langBtn = document.querySelector('.lang-btn');
+const langMenu = document.createElement('div');
+langMenu.className = 'lang-menu';
+langList.forEach(code => {
+  const btn = document.createElement('button');
+  btn.textContent = code.toUpperCase();
+  btn.dataset.lang = code;
+  if (code === currentLang) btn.className = 'active';
+  btn.addEventListener('click', () => {
+    setLanguage(code);
+    langMenu.classList.remove('open');
+  });
+  langMenu.appendChild(btn);
+});
+langBtn.parentElement.appendChild(langMenu);
+langBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  langMenu.classList.toggle('open');
+});
+document.addEventListener('click', () => langMenu.classList.remove('open'));
+
+function setLanguage(code) {
+  currentLang = code;
+  langBtn.textContent = code.toUpperCase();
+  langMenu.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.lang === code));
+  applyTranslation(translations[code]);
+}
+
+function applyTranslation(t) {
+  document.querySelector('.nav-links li:nth-child(1) a').textContent = t.navMenu;
+  document.querySelector('.nav-links li:nth-child(2) a').textContent = t.navAbout;
+  document.querySelector('.nav-links li:nth-child(3) a').textContent = t.navRes;
+  document.querySelector('.nav-links li:nth-child(4) a').textContent = t.navContact;
+  document.querySelector('.hero-since').textContent = t.heroSince;
+  document.querySelector('.hero h1').innerHTML = t.heroTitle.replace(/ (.+)$/, ' <em>$1</em>');
+  document.querySelector('.hero p').innerHTML = t.heroDesc.replace('Gen D', '<span style="color:yellow"><em>Gen D </em></span>');
+  document.querySelector('.btn-hero').textContent = t.heroBtn;
+  document.querySelector('.section-sub').textContent = t.sectionSub;
+  document.querySelector('.section-heading h2').textContent = t.sectionTitle;
+  document.querySelectorAll('.filter-btn')[0].textContent = t.filterAll;
+  document.querySelectorAll('.filter-bar .filter-btn').forEach((btn, i) => {
+    if (i > 0) {
+      const map = { 'en': ['Italian','American','Japanese','Mexican','Thai'] };
+      btn.textContent = t[map.en[i-1]] || map.en[i-1];
+    }
+  });
+  document.querySelector('#about .section-sub').textContent = t.aboutSub;
+  document.querySelector('#about h2').textContent = t.aboutTitle;
+  document.querySelector('#contact .section-sub').textContent = t.contactSub;
+  document.querySelector('#contact h2').textContent = t.contactTitle;
+  document.querySelector('.footer-brand p').textContent = t.footerText;
+}
 
 function title(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -410,3 +492,69 @@ function submitReservation() {
 }
 
 renderReservation();
+renderAbout();
+renderContact();
+
+function renderAbout() {
+  const section = document.getElementById('about');
+  section.innerHTML = `
+    <span class="section-sub">${translations.en.aboutSub}</span>
+    <h2>${translations.en.aboutTitle}</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Welcome to Gen D — where the spirit of <strong>Maido</strong>, ranked among the world's finest restaurants, inspires every plate.</p>
+        <p>${maidoInfo.philosophy}</p>
+        <p>Our cuisine is <strong>Nikkei</strong> — a harmony of Japanese precision and Peruvian soul. Led by Chef <strong>${maidoInfo.chef}</strong>, we honor this tradition of intercultural exchange, blending the freshest local ingredients with techniques passed across oceans and generations.</p>
+        <p>Every dish at Gen D tells a story of movement — of flavors, people, and cultures colliding to create something entirely new.</p>
+        <div class="chef-name">${maidoInfo.chef}</div>
+        <div class="chef-title">Executive Chef &bull; Maido, Lima</div>
+      </div>
+      <div class="about-img" style="background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;min-height:420px;border-radius:20px">
+        <span style="color:rgba(255,255,255,.3);font-size:3rem;font-family:'Playfair Display',serif">Maido</span>
+      </div>
+    </div>`;
+}
+
+function renderContact() {
+  const section = document.getElementById('contact');
+  const t = translations.en;
+  section.innerHTML = `
+    <span class="section-sub">${t.contactSub}</span>
+    <h2>${t.contactTitle}</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Visit Us</h3>
+        <div class="contact-item">
+          <span class="ci-icon">📍</span>
+          <div><div class="ci-label">Address</div><div class="ci-value">${maidoInfo.address}</div></div>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">📞</span>
+          <div><div class="ci-label">Phone</div><div class="ci-value">${maidoInfo.phone}</div></div>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">🕐</span>
+          <div><div class="ci-label">Hours</div><div class="ci-value">${maidoInfo.hours}</div></div>
+        </div>
+        <div class="contact-item">
+          <span class="ci-icon">🚫</span>
+          <div><div class="ci-label">Sunday</div><div class="ci-value">${maidoInfo.sunday}</div></div>
+        </div>
+      </div>
+      <div class="contact-map" style="background:#e8e3dd;display:flex;align-items:center;justify-content:center;border-radius:20px;min-height:300px">
+        <p style="color:#999;font-size:.9rem">Map: Miraflores, Lima — Peru</p>
+      </div>
+    </div>`;
+}
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const sectionObserver = new IntersectionObserver(() => {
+  let current = 'menu';
+  sections.forEach(s => {
+    const rect = s.getBoundingClientRect();
+    if (rect.top <= 200) current = s.id;
+  });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+}, { threshold: [0, 0.25, 0.5] });
+sections.forEach(s => sectionObserver.observe(s));
