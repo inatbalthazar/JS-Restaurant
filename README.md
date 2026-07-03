@@ -1,7 +1,9 @@
 # Gen D — Premium Dining
 Deploy โดย Vercel https://1st-meet-git.vercel.app/
 
-> โครงการนี้เป็นส่วนหนึ่งของการเรียนรู้ในหลักสูตร **JSD Generation Thailand** ในหัวข้อเรียน JavaScript สอนโดย K.Neeti/K.Kan
+> โครงการนี้เป็นส่วนหนึ่งของการเรียนรู้ในหลักสูตร **JSD Generation Thailand** ในหัวข้อเรียน JavaScript สอนโดย
+> Neetibut Vasinondha(NEETI) | Kantapon Rattanamalee(KAN)
+        
 
 เว็บไซต์ร้านอาหารระดับพรีเมียมที่แสดงเมนูอาหาร พร้อมระบบจองโต๊ะและสั่งอาหารล่วงหน้า ข้อมูลทั้งหมดดึงจากไฟล์ JavaScript และแสดงผลผ่าน DOM
 
@@ -18,6 +20,7 @@ Deploy โดย Vercel https://1st-meet-git.vercel.app/
 | **Confirmation Modal** | แสดง ref ID หลังจากจองสำเร็จ |
 | **Persistent Storage** | ข้อมูลการจองถูกบันทึกใน `localStorage` |
 | **Dark Mode** | สลับธีมกลางวัน/กลางคืนด้วยปุ่ม toggle (🌙/☀️) ขวาบน จำค่าผ่าน localStorage |
+| **Localization** | ปุ่มเปลี่ยนภาษาที่รองรับ 10 ภาษาให้เลือก |
 | **Scroll Animation** | การ์ดเมนูค่อยๆ ปรากฏเมื่อเลื่อนลงมา (IntersectionObserver) |
 | **Responsive Design** | รองรับทุกขนาดหน้าจอ (Desktop, Tablet, Mobile) |
 
@@ -29,12 +32,12 @@ Deploy โดย Vercel https://1st-meet-git.vercel.app/
 
 ข้อมูลทั้งหมดถูกเก็บในไฟล์ JavaScript ในรูปแบบ **array of objects**:
 
-**`my-array.js`** — ข้อมูลรายชื่ออาหารแบบ array อย่างง่าย:
+**`my-array.js`** — ข้อมูลรายชื่ออาหารแบบ array :
 ```js
 let food = ["pizza", "burger", "pasta", "sushi", "tacos", "pad thai", "ramen", "steak"];
 ```
 
-**`my-object.js`** — ข้อมูล structured พร้อมรายละเอียดครบถ้วน:
+**`my-object.js`** — ข้อมูล structured พร้อมรายละเอียด:
 ```js
 let foodDatabase = [
     {
@@ -122,5 +125,3 @@ npx serve .
 - **HTML5** — โครงสร้างหน้าเว็บ
 - **CSS3** — ตกแต่งผ่าน JavaScript injection (Flexbox, Grid, Animations, Media Queries)
 - **JavaScript (Vanilla)** — ข้อมูล การจัดการ DOM, LocalStorage, IntersectionObserver
-- **Google Fonts** — *Playfair Display* + *Inter*
-- **Unsplash** — รูปภาพอาหาร
