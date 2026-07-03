@@ -143,8 +143,8 @@ footer{background:var(--footer-bg);color:var(--footer-text)}
 .contact-item .ci-icon{font-size:1.3rem;width:28px;text-align:center;flex-shrink:0;margin-top:2px}
 .contact-item .ci-label{font-size:.72rem;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
 .contact-item .ci-value{font-size:.9rem;color:var(--text);line-height:1.5}
-.contact-map{background:var(--card-bg);border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.05);min-height:300px}
-.contact-map iframe{width:100%;height:100%;border:none;display:block}
+.contact-map{background:var(--card-bg);border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.05);min-height:360px}
+.contact-map iframe{width:100%;height:360px;border:none;display:block}
 @media(max-width:768px){.about-grid,.contact-grid{grid-template-columns:1fr}.about-img img{height:260px}.lang-menu{grid-template-columns:1fr}}
 @media(max-width:480px){.dark-toggle{top:72px;right:16px;width:42px;height:42px;font-size:1.1rem}.lang-btn{padding:4px 10px;font-size:.7rem}}
 `;
@@ -541,8 +541,8 @@ function renderContact() {
           <div><div class="ci-label">Sunday</div><div class="ci-value">${maidoInfo.sunday}</div></div>
         </div>
       </div>
-      <div class="contact-map" style="background:#e8e3dd;display:flex;align-items:center;justify-content:center;border-radius:20px;min-height:300px">
-        <p style="color:#999;font-size:.9rem">Map: Miraflores, Lima — Peru</p>
+      <div class="contact-map">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-77.0375%2C-12.1234%2C-77.0255%2C-12.1134&amp;layer=mapnik&amp;marker=-12.1184%2C-77.0315" loading="lazy" allowfullscreen></iframe>
       </div>
     </div>`;
 }
