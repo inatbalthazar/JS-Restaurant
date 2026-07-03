@@ -118,7 +118,7 @@ body{background:var(--bg);color:var(--text);transition:background .3s,color .3s}
 footer{background:var(--footer-bg);color:var(--footer-text)}
 .dark-toggle{background:0;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:5px 8px;border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;line-height:1}
 .dark-toggle:hover{background:rgba(255,255,255,.1);border-color:#d4af37;color:#d4af37}
-.nav-actions{display:flex;align-items:center;gap:8px}
+.nav-actions{display:flex;align-items:center;gap:8px;position:relative}
 .nav-actions .lang-btn{background:0;border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);padding:5px 12px;border-radius:6px;font-size:.75rem;font-weight:600;letter-spacing:.5px;cursor:pointer;transition:all .25s;font-family:'Inter',sans-serif;line-height:1}
 .nav-actions .lang-btn:hover{background:rgba(255,255,255,.1);border-color:#d4af37;color:#d4af37}
 .lang-switcher{position:relative}
